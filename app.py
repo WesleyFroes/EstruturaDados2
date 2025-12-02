@@ -80,7 +80,7 @@ with col_search:
 with col_btn:
     executar = st.button("🔍 Buscar", type="primary", use_container_width=True)
 
-if ejecutar:
+if executar:
     if not termo:
         st.warning("Digite algo para buscar.")
     else:
@@ -228,3 +228,4 @@ if st.toggle("💻 Ver Código Fonte Python"):
     with open(__file__, "r", encoding='utf-8') as f:
         codigo = f.read()
     st.code(codigo, language="python")
+
