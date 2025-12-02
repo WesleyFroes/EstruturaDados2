@@ -74,6 +74,18 @@ except Exception as e:
     st.stop()
 
 # --- INPUT DO USUÁRIO ---
+# CSS Injetado para dar estilo de "Cartão" ao formulário (Fundo + Borda)
+st.markdown("""
+<style>
+    [data-testid="stForm"] {
+        background-color: var(--secondary-background-color);
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid rgba(250, 250, 250, 0.1);
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # Usamos st.form para permitir que a tecla ENTER submeta a busca
 with st.form(key='search_form'):
     col_search, col_btn = st.columns([3, 1], vertical_alignment="bottom") 
@@ -235,4 +247,3 @@ if st.toggle("💻 Ver Código Fonte Python"):
     with open(__file__, "r", encoding='utf-8') as f:
         codigo = f.read()
     st.code(codigo, language="python")
-
