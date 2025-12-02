@@ -68,19 +68,26 @@ def load_hashmap():
 try:
     with st.spinner('Carregando dados para memória RAM...'):
         hash_db = load_hashmap()
-    st.success(f"✅ Sistema Online. {len(hash_db)} chaves de busca em memória (Indexando Nomes + CPFs).")
+    # Mensagem movida para baixo conforme solicitado
 except Exception as e:
     st.error(f"Erro de conexão: {e}")
     st.stop()
 
 # --- INPUT DO USUÁRIO ---
-col_search, col_btn = st.columns([3, 1], vertical_alignment="bottom") 
-with col_search:
-    termo = st.text_input("Digite NOME COMPLETO ou CPF:", placeholder="Ex: Augusto Sampaio ou 760.142.958-01")
-with col_btn:
-    executar = st.button("🔍 Buscar", type="primary", use_container_width=True)
+# Usamos st.form para permitir que a tecla ENTER submeta a busca
+with st.form(key='search_form'):
+    col_search, col_btn = st.columns([3, 1], vertical_alignment="bottom") 
+    with col_search:
+        termo = st.text_input("Digite NOME COMPLETO ou CPF:", placeholder="Ex: Augusto Sampaio ou 760.142.958-01")
+    with col_btn:
+        # Em um formulário, o botão deve ser form_submit_button
+        executar = st.form_submit_button("🔍 Buscar", type="primary", use_container_width=True)
 
-if executar:
+# Exibe a mensagem de status do sistema logo abaixo do botão/formulário
+if 'hash_db' in locals():
+    st.success(f"✅ Sistema Online. {len(hash_db)} chaves de busca em memória (Indexando Nomes + CPFs).")
+
+if ejecutar:
     if not termo:
         st.warning("Digite algo para buscar.")
     else:
@@ -228,4 +235,3 @@ if st.toggle("💻 Ver Código Fonte Python"):
     with open(__file__, "r", encoding='utf-8') as f:
         codigo = f.read()
     st.code(codigo, language="python")
-
