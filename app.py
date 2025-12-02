@@ -68,10 +68,12 @@ def load_hashmap():
 try:
     with st.spinner('Carregando dados para memória RAM...'):
         hash_db = load_hashmap()
-    # Mensagem movida para baixo conforme solicitado
+
 except Exception as e:
     st.error(f"Erro de conexão: {e}")
     st.stop()
+
+st.divider() 
 
 # --- INPUT DO USUÁRIO ---
 # CSS Injetado para dar estilo de "Cartão" ao formulário (Fundo + Borda)
@@ -247,3 +249,4 @@ if st.toggle("💻 Ver Código Fonte Python"):
     with open(__file__, "r", encoding='utf-8') as f:
         codigo = f.read()
     st.code(codigo, language="python")
+
