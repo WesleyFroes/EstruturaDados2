@@ -87,7 +87,7 @@ with st.form(key='search_form'):
 if 'hash_db' in locals():
     st.success(f"✅ Sistema Online. {len(hash_db)} chaves de busca em memória (Indexando Nomes + CPFs).")
 
-if ejecutar:
+if executar:
     if not termo:
         st.warning("Digite algo para buscar.")
     else:
@@ -235,3 +235,4 @@ if st.toggle("💻 Ver Código Fonte Python"):
     with open(__file__, "r", encoding='utf-8') as f:
         codigo = f.read()
     st.code(codigo, language="python")
+
